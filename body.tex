@@ -1,9 +1,15 @@
 \section{Introduction} \label{sec:intro}
 
 
+There is a perceived  risk that LSST  images may be snooped during transmission from the telescope. This concerns the images used for Alert processing which are transmitted within a minute and provide a valuable resource for identifying moving objects including satellites. Though our processing will ignore satellites other parties may be interested in this information.
+
 \section{Network security}\label{sec:net}
 
-The transfers from Summit to Base and Base to NCSA are over private networks that are not part of the Internet.  Intercepting those transfers requires access to the routers in the path or physical access to the fibers.
+On the mountain and in the base facility LSST networks and computers are in rooms requiring ID card access.Of course we could increase security but it would be costly to consider increasing the security level on the facilities.
+
+The transfers from Summit to Base and Base to NCSA go over private networks that are not part of the public Internet. We have our own dedicated fibers running from the mountain to the base \citedsp{LSE-78}
+intercepting transfers would require physical access to the fibers - tapping those would disrupt our network at leas temporarily i.e. we would at least known something was up.  Though technically feasible by perhaps bribing or coercing staff somewhere this seems unlikely - a physical tap should also be noticed during fiber inspections.
 
 
 \section{Transmission security} \label{sec:trans}
+As we understand it holding data for 12 to 24 hours before releasing to the collaboration is an acceptable approach to securing the images - this can be ensured by limiting the LSST personnel who have access to the files during the night.
