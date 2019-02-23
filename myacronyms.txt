@@ -1,3 +1,5 @@
 #Put acronyms in this file which are not found or which have multiple definitions (putt he one you want here)
 AES:Advanced Encryption Service
 BBCP:BaBar Copy Program 
+FSL:Facility Security Level
+INRIA:French National Institute for computer science and applied mathematics

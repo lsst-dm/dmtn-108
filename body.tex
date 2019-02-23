@@ -5,21 +5,24 @@ There is a perceived  risk that LSST  images may be snooped during transmission 
 
 \section{Network security}\label{sec:net}
 
-On the mountain and in the base facility LSST networks and computers are in rooms requiring ID card access.Of course we could increase security but it would be costly to consider increasing the security level on the facilities.
+On the mountain and in the base facility LSST networks and computers are in rooms requiring ID card access.
+We could increase security but it would be costly and probably not very popular with staff i.e it would require raising the security level of the entire facility to something like FSL\footnote{\url{https://emilms.fema.gov/IS1172/groups/85.html}} 2 .
 
-The transfers from Summit to Base and Base to NCSA go over private networks that are not part of the public Internet. We have our own dedicated fibers running from the mountain to the base \citedsp{LSE-78}
-intercepting transfers would require physical access to the fibers - tapping those would disrupt our network at leas temporarily i.e. we would at least known something was up.  Though technically feasible by perhaps bribing or coercing staff somewhere this seems unlikely - a physical tap should also be noticed during fiber inspections.
+The transfers from Summit to Base and Base to NCSA go over private networks that are not part of the public Internet. We have our own dedicated fibers running from the mountain to the base \citedsp{LSE-78},
+intercepting transfers would require physical access to the fibers - tapping those would disrupt our network at least temporarily i.e. we would at least known something was up.  Though technically feasible by perhaps bribing or coercing staff somewhere this seems unlikely - a physical tap should also be noticed during fiber inspections.  The image as transferred over this line is also in an obscure format (though could be put together with some effort).
 
 
 \section{Transmission security} \label{sec:trans}
 As we understand it holding data for 12 to 24 hours before releasing to the collaboration is an acceptable approach to securing the images - this can be ensured by limiting the LSST personnel who have access to the files during the night.
 
-Currently alert images from the base are to be transmitted using BBCP\footnote{BBCP is an alternative to Gridftp when transferring large amounts of data} - though the control channel is encrypted the data channel is open - this is considered quite secure in the scientific world \citep{bbcp}. Theoretically packets snooped on the their way to Illinois could be extracted and processed.
+Currently alert images from the base are to be transmitted using BBCP\footnote{BBCP is an alternative to Gridftp when transferring large amounts of data}. The control channel is encrypted but the data channel is open - this is considered secure in the scientific world \citep{bbcp}. Hence theoretically packets could be snooped on the their way to Illinois could be extracted and processed.
 
 
-We could encrypt the entire channel using  128 bit encryption - this would be a significant cost in compute. Though there are plenty of examples of hardware solutions for this which would probably be affordable, INRIA in \cite{10.1007/978-3-642-45073-0_1} have build a FPGA based AES\cite{aes} implementation  which gives 100Gbit/s network rates with $\mu s$ additional latency. Table 3 of \cite{10.1007/978-3-642-45073-0_1} lists the hardware which looks modest enough - we work with INRIA already. There is not price given in the document but cost of components and a contract to put it together one \emph{might} consider to be  under \$1M.
+We could encrypt the entire channel - this would be a significant cost in compute. Though there are plenty of examples of hardware solutions for this which would probably be affordable, INRIA in \cite{10.1007/978-3-642-45073-0_1} have build a FPGA based AES\cite{aes} implementation  which gives 100Gbit/s network rates with $\mu s$ additional latency. Table 3 of \cite{10.1007/978-3-642-45073-0_1} lists the hardware which looks modest enough - we work with INRIA already. There is no price given in the document, but considering the cost of components and a contract to put it together one \emph{might} consider it to be  under \$1M, but we would need to get a quote.
 
-We could encrypt the images themselves before transmission or even on the FPGA of the camera data acquisition (DAQ) system.  The DAQ is complex constriction prone to delays so we would rather not jeopardize the project by introducing changes there. Encrypting the files outside would mean more CPU and I/O - it would add a delay in the alerts processing - it may take as much as 20\% of the alerts time budget (1 minute).  This would not be very welcome in the science community.
+We could encrypt the images themselves before transmission or even on the FPGA of the camera data acquisition (DAQ) system.  The DAQ is complex constriction prone to delays so we would rather not jeopardize the project by introducing changes there. Encrypting the files outside would mean more CPU and I/O - it would add a delay in the alerts processing - it may take as much as 20\% of the alerts time budget (1 minute).  This would not be very welcome in the science community. This would require some effort on our side to add encryption to the processing chain but this should be order some hundreds \$K depending on how \emph{secure} it is required to be.
+
+
 
 \subsection{Keeping it in Chile}\label{sec:chile}
 The original baseline was to do alert processing in Chile in the base facility. Some years ago support for computing in Chile was sub optimal but has improved significantly - there is space in the base facility to hold machines for this.  If we agree the base/summit are secure we could avoid on the wire snooping by doing alert processing in the base facility. We would also then have to hold images there for the appointed embargo time (12 or 24 hours) before releasing them to the community. We would need to do some work on the cost impacts of this but they should not be insurmountable.
