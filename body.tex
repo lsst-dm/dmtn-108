@@ -3,6 +3,12 @@
 
 There is a perceived  risk that LSST  images may be snooped during transmission from the telescope. This concerns the images used for alert processing which are transmitted within a minute and provide a valuable resource for identifying moving objects including satellites. Though our processing will ignore satellites other parties may be interested in this information.
 
+In an email during September 2019 Steve Kahn indicated that all data should be encrypted. This would include transfers to Europe.
+The baseline in 2019 remains encruption of controls but not data i.e. authenticaiton is encrypted = data transmission is not.
+.
+{\bf It would be extreemly useful if we agreed on the security rating of LSST data as per NIST  \cite{nist800-60}}.
+Naively one would assume the secutity bojective would be \emph{Availability}, the potential impact would be \emph{low} for confidentiality, availability and integrity. Hence  the Security Category (SC) would be \{low,low,low\} in NIST terms.
+
 \section{Network security}\label{sec:net}
 
 On the mountain and in the base facility LSST networks and computers are in rooms requiring ID card access.
