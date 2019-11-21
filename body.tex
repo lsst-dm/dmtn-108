@@ -4,10 +4,10 @@
 There is a perceived  risk that LSST  images may be snooped during transmission from the telescope. This concerns the images used for alert processing which are transmitted within a minute and provide a valuable resource for identifying moving objects including satellites. Though our processing will ignore satellites other parties may be interested in this information.
 
 In an email during September 2019 Steve Kahn indicated that all data should be encrypted. This would include transfers to Europe.
-The baseline in 2019 remains encruption of controls but not data i.e. authenticaiton is encrypted = data transmission is not.
+The baseline in 2019 remains encryption of controls but not data i.e. authentication is encrypted = data transmission is not.
 .
-{\bf It would be extreemly useful if we agreed on the security rating of LSST data as per NIST  \cite{nist800-60}}.
-Naively one would assume the secutity bojective would be \emph{Availability}, the potential impact would be \emph{low} for confidentiality, availability and integrity. Hence  the Security Category (SC) would be \{low,low,low\} in NIST terms.
+{\bf It would be extremely useful if we agreed on the security rating of LSST data as per NIST  \citep{nist800-60}}.
+Naively one would assume the security objective would be \emph{Availability}, the potential impact would be \emph{low} for confidentiality, availability and integrity. Hence  the Security Category (SC) would be \{low,low,low\} in NIST terms.
 
 \section{Network security}\label{sec:net}
 
@@ -19,9 +19,14 @@ intercepting transfers would require physical access to the fibers - tapping tho
 Though technically feasible by perhaps bribing or coercing staff somewhere this seems unlikely - a physical tap should also be noticed during fiber inspections.  The image as transferred over this line is also in an obscure format (though could be put together with some effort).
 
 
+International transfers to IN2P3 are still being worked out at this time. This may be done on shared commercial carrier. One assumes
+this is relatively secure though not perhaps as secure as our dedicated lines. ESNET could be used for this transfer as well if it did not originate at NCSA. There seems no particular reason to do this transfer from NCSA as opposed to directly from Chile or landing it
+temporarily at some ESNET endpoint. One may consider the open storage network \citep{osn} for this also though its not currently the baseline.
+
+
 \section{Transmission security} \label{sec:trans}
 
-As we understand it, holding data for 12 to 24 hours before releasing to the collaboration is an acceptable approach to securing the images - this can be ensured by limiting the LSST personnel who have access to the files during the night.
+As we understand it, holding data for 6 to 24 hours before releasing to the collaboration is an acceptable approach to securing the images - this can be ensured by limiting the LSST personnel who have access to the files during the night.
 We would transmit images for alert processing in near realtime to NCSA.
 
 Currently alert images from the base are to be transmitted using BBCP\footnote{BBCP is an alternative to Gridftp when transferring large amounts of data}. The control channel is encrypted but the data channel is open - this is considered secure in the scientific world \citep{bbcp}. Hence theoretically packets could be snooped on the their way to Illinois could be extracted and processed.
