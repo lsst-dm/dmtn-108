@@ -11,11 +11,14 @@ Naively one would assume the security objective would be \emph{Availability}, th
 
 \section{Network security}\label{sec:net}
 
-On the mountain and in the base facility LSST networks and computers are in rooms requiring ID card access.
+On the mountain and in the base facility LSST networks and computers are in rooms requiring ID card access and the compounds
+have 24/7 security staff.
 We could increase security but it would be costly and probably not very popular with staff i.e it would require raising the security level of the entire facility to something like FSL\footnote{\url{https://emilms.fema.gov/IS1172/groups/85.html}} 2 .
 
 The transfers from Summit to Base and Base to NCSA go over private networks that are not part of the public Internet. We have our own dedicated fibers running from the mountain to the base \citedsp{LSE-78},
-intercepting transfers would require physical access to the fibers - tapping those would disrupt our network at least temporarily.  The network is also actively monitored withe Bro\footnote{\url{https://www.corelight.com/about-bro/how-bro-works/}} system. Hence we would at least known something was up.
+intercepting transfers would require physical access to the fibers - tapping those would probably disrupt our network at least temporarily.
+For an added security we could also monitor fiber attenuation.
+The network is also actively monitored withe Bro\footnote{\url{https://www.corelight.com/about-bro/how-bro-works/}} system. Hence we would at least known something was up.
 Though technically feasible by perhaps bribing or coercing staff somewhere this seems unlikely - a physical tap should also be noticed during fiber inspections.  The image as transferred over this line is also in an obscure format (though could be put together with some effort).
 
 
@@ -26,10 +29,10 @@ temporarily at some ESNET endpoint. One may consider the open storage network \c
 
 \section{Transmission security} \label{sec:trans}
 
-As we understand it, holding data for 6 to 24 hours before releasing to the collaboration is an acceptable approach to securing the images - this can be ensured by limiting the LSST personnel who have access to the files during the night.
-We would transmit images for alert processing in near realtime to NCSA.
+It has been indicated, through DOE, that holding data for some time before releasing to the collaboration is an acceptable approach to securing the images - this can be ensured by limiting the LSST personnel who have access to the files during the night.
+We would transmit images for alert processing in near realtime to NCSA. We have suggested a six hour delay - there has been no indication of how long the delay needs to be - is one hour sufficient to prevent detection of satellite maneuvers ?
 
-Currently alert images from the base are to be transmitted using BBCP\footnote{BBCP is an alternative to Gridftp when transferring large amounts of data}. The control channel is encrypted but the data channel is open - this is considered secure in the scientific world \citep{bbcp}. Hence theoretically packets could be snooped on the their way to Illinois could be extracted and processed.
+Currently alert images from the base are to be transmitted using BBCP\footnote{BBCP is an alternative to Gridftp when transferring large amounts of data}. The control channel is encrypted but the data channel is open - this is considered secure in the scientific world \citep{bbcp}. Hence theoretically packets snooped on their way to Illinois could be extracted and processed.
 
 
 We could encrypt the data  channel. This would cost us in  compute, potentially  doubling or more the number of cores needed for transfer. We would also have some software modification and setup, projects like WireGuard\footnote{\url{https://www.wireguard.com/}} intending to do this at the kernel level could ameliorate this somewhat.
@@ -40,4 +43,6 @@ We could encrypt the images themselves before transmission or even on the FPGA o
 
 
 \subsection{Keeping it in Chile}\label{sec:chile}
-The original baseline was to do alert processing in Chile in the base facility. Some years ago support for computing in Chile was sub optimal but has improved significantly - there is space in the base facility to hold machines for this.  If we agree the base/summit are secure we could avoid on the wire snooping by doing alert processing in the base facility. We would also then have to hold images there for the appointed embargo time (12 or 24 hours) before releasing them to the community. We would need to do some work on the cost impacts of this but they should not be insurmountable.
+The original baseline was to do alert processing in Chile in the base facility. Some years ago support for computing in Chile was sub optimal but has improved significantly - there is space in the base facility to hold machines for this.
+This would make the base data center the prime target of any data  attack so we may need to review security there.
+However if we agree the base/summit are secure we could avoid on the wire snooping by doing alert processing in the base facility. We would also then have to hold images there for the appointed embargo time  before releasing them to the community. We would need to do some work on the cost impacts of this but they should not be insurmountable.
