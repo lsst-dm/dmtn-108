@@ -1,15 +1,34 @@
 \section{Introduction} \label{sec:intro}
 
-
 There is a perceived  risk that LSST  images may be snooped during transmission from the telescope. This concerns the images used for alert processing which are transmitted within a minute and provide a valuable resource for identifying moving objects including satellites. Though our processing will ignore satellites other parties may be interested in this information.
 
 In an email during September 2019 Steve Kahn indicated that all data should be encrypted. This would include transfers to Europe.
-The baseline in 2019 remains encryption of controls but not data i.e. authentication is encrypted = data transmission is not.
-.
+
+
+\subsection{Baseline }
+The Rubin Observatory construction project has been built with academic level security in mind.
+The
+ Information classification policy \citeds{LPM-122} classifies data as  “User Protected”.
+The DM Information Security plan \citeds{LDM-324} states the “majority of network traffic will not require confidentiality“
+
+Since our astronomy data is research data with no intrinsic value no great efforts have been made to secure the
+data nor the network it is traveling on.
+
+The baseline is for encryption of controls but not data i.e. authentication is encrypted , data transmission is not.
+
 {\bf It would be extremely useful if we agreed on the security rating of LSST data as per NIST  \citep{nist800-60}}.
 Naively one would assume the security objective would be \emph{Availability}, the potential impact would be \emph{low} for confidentiality, availability and integrity. Hence  the Security Category (SC) would be \{low,low,low\} in NIST terms.
 
+
+
+
 \section{Network security}\label{sec:net}
+
+\begin{figure}
+\includegraphics[width=0.6\textwidth]{NetworksFy22}
+\caption{Rubin Observatory Network topology for FY22, the primary route is on dedicated lines, the back route is on shared equipment. Securing this beyond the level of the provider will be close to impossible.  \label{fig:net}}
+% original https://docs.google.com/presentation/d/1wIN6Dj_rPn8TASBUkAm6_-Yh255Gz9VbwFi61t4LCFs/edit#slide=id.g55f7c0247e_0_2
+\end{figure}
 
 On the mountain and in the base facility LSST networks and computers are in rooms requiring ID card access and the compounds
 have 24/7 security staff.
