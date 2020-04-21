@@ -13,20 +13,22 @@ The DM Information Security plan \citeds{LDM-324} states the “majority of netw
 
 Since our astronomy data is research data with no intrinsic value no great efforts have been made to secure the
 data nor the network it is traveling on.
+The network has been designed, and now largely implmented, for high throughput not for high security.
 
-The baseline is for encryption of controls but not data i.e. authentication is encrypted , data transmission is not.
+The baseline is for encryption of controls but not data i.e. authentication is encrypted, data transmission is not.
 
-{\bf It would be extremely useful if we agreed on the security rating of LSST data as per NIST  \citep{nist800-60}}.
+{\bf It would be extremely useful if we agreed on the security rating of LSST data (or subsets of it)  as per NIST  \citep{nist800-60}}.
 Naively one would assume the security objective would be \emph{Availability}, the potential impact would be \emph{low} for confidentiality, availability and integrity. Hence  the Security Category (SC) would be \{low,low,low\} in NIST terms.
 
-
-
+\input{whichdata}
 
 \section{Network security}\label{sec:net}
 
 \begin{figure}
-\includegraphics[width=0.6\textwidth]{NetworksFy22}
+\begin{center}
+\includegraphics[width=1.0\textwidth]{NetworksFy22}
 \caption{Rubin Observatory Network topology for FY22, the primary route is on dedicated lines, the back route is on shared equipment. Securing this beyond the level of the provider will be close to impossible.  \label{fig:net}}
+\end{center}
 % original https://docs.google.com/presentation/d/1wIN6Dj_rPn8TASBUkAm6_-Yh255Gz9VbwFi61t4LCFs/edit#slide=id.g55f7c0247e_0_2
 \end{figure}
 
@@ -65,3 +67,6 @@ We could encrypt the images themselves before transmission or even on the FPGA o
 The original baseline was to do alert processing in Chile in the base facility. Some years ago support for computing in Chile was sub optimal but has improved significantly - there is space in the base facility to hold machines for this.
 This would make the base data center the prime target of any data  attack so we may need to review security there.
 However if we agree the base/summit are secure we could avoid on the wire snooping by doing alert processing in the base facility. We would also then have to hold images there for the appointed embargo time  before releasing them to the community. We would need to do some work on the cost impacts of this but they should not be insurmountable.
+
+
+\input{sum}
