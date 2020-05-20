@@ -13,7 +13,7 @@ The DM Information Security plan \citeds{LDM-324} states the “majority of netw
 
 Since our astronomy data is research data with no intrinsic value no great efforts have been made to secure the
 data nor the network it is traveling on.
-The network has been designed, and now largely implmented, for high throughput not for high security.
+The network has been designed, and now largely implemented, for high throughput not for high security.
 
 The baseline is for encryption of controls but not data i.e. authentication is encrypted, data transmission is not.
 
@@ -44,8 +44,8 @@ Though technically feasible by perhaps bribing or coercing staff somewhere this 
 
 
 International transfers to IN2P3 are still being worked out at this time. This may be done on shared commercial carrier. One assumes
-this is relatively secure though not perhaps as secure as our dedicated lines. ESNET could be used for this transfer as well if it did not originate at NCSA. There seems no particular reason to do this transfer from NCSA as opposed to directly from Chile or landing it
-temporarily at some ESNET endpoint. One may consider the open storage network \citep{osn} for this also though its not currently the baseline.
+this is relatively secure though not perhaps as secure as our dedicated lines. ESNet could be used for this transfer as well if it did not originate at NCSA. There seems no particular reason to do this transfer from NCSA as opposed to directly from Chile or landing it
+temporarily at some ESNet endpoint. One may consider the open storage network \citep{osn} for this also though its not currently the baseline.
 
 
 \section{Transmission security} \label{sec:trans}
@@ -56,8 +56,9 @@ We would transmit images for alert processing in near realtime to NCSA. We have 
 Currently alert images from the base are to be transmitted using BBCP\footnote{BBCP is an alternative to Gridftp when transferring large amounts of data}. The control channel is encrypted but the data channel is open - this is considered secure in the scientific world \citep{bbcp}. Hence theoretically packets snooped on their way to Illinois could be extracted and processed.
 
 
-We could encrypt the data  channel. This would cost us in  compute, potentially  doubling or more the number of cores needed for transfer. We would also have some software modification and setup, projects like WireGuard\footnote{\url{https://www.wireguard.com/}} intending to do this at the kernel level could ameliorate this somewhat.
-There are also  examples of hardware solutions for this which would probably be affordable, INRIA in \cite{10.1007/978-3-642-45073-0_1} have build a FPGA based AES\cite{aes} implementation  which gives 100Gbit/s network rates with $\mu s$ additional latency. Table 3 of \cite{10.1007/978-3-642-45073-0_1} lists the hardware which looks modest enough - we work with INRIA already. There is no price given in the document, but considering the cost of components and a contract to put it together one \emph{might} consider it to be  under \$1M, but we would need to get a quote.
+Our preference would be to do this in software using TLS based protocols such as HTTPS or FTPS to replace BBCP. This may cause some performance hit.
+We could encrypt the data  channel. This would cost us in  compute but could be similar to compression and not push up the number of cores needed for transfer. We would also have some software modification and setup there are projects like WireGuard\footnote{\url{https://www.wireguard.com/}} intending to do this at the kernel level but they are not suitable for Rubin use yet.
+There are also  examples of hardware solutions for this which would probably be affordable, INRIA in \cite{10.1007/978-3-642-45073-0_1} have build a FPGA based AES\cite{aes} implementation  which gives 100Gbit/s network rates with $\mu s$ additional latency. Table 3 of \cite{10.1007/978-3-642-45073-0_1} lists the hardware which looks modest enough - we work with INRIA already. There is no price given in the document, but considering the cost of components and a contract to put it together one \emph{might} consider it to be  under \$1M, but we would need to get a quote. This is probably more complex than we might want to get into.
 
 We could encrypt the images themselves before transmission or even on the FPGA of the camera data acquisition (DAQ) system.  The DAQ is complex construction prone to delays so we would rather not jeopardize the project by introducing changes there. Encrypting the files outside would mean more CPU and I/O - it would add a delay in the alerts processing - it may take as much as 20\% of the alerts time budget (1 minute).  This would not be very welcome in the science community. This would require some effort on our side to add encryption to the processing chain but this should be order some hundreds \$K depending on how \emph{secure} it is required to be.
 
