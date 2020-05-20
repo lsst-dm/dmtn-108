@@ -1,0 +1,18 @@
+\section{High level summary}\label{sec:sum}
+Though the reason behind the call for security and the level required remain totally unclear
+NSF and DOE asked for a brief summary of possibilities.
+One should also consider which data we are talking about see \secref{sec:which}.
+Items here are not costed but an indication is given in terms of low (possibly within cost), moderate (some \$100Ks), high (>\$1M)
+Any change should be properly costed.
+
+
+\begin{longtable}{p{0.75\textwidth} p{0.25\textwidth}}\hline
+\textbf{Security idea} & \textbf{Rough cost level}  \\\hline
+ {\bf Delay/degrade image info.} If the precise position of small objects is the driver then not providing accurate shutter times would make precise positions inaccessible & Low to Moderate.\\
+ {\bf Delay some or all images.} Depending on how secure this needs to be and where it is done the cost scales.  & Low to Moderate.\\
+ {\bf Do alerts in Chile.} If we want to control image access for a longer period we could consider alert production in Chile. The hardware budget would remain the same but we may require extra support in Chile.  & Low to Moderate.\\
+{\bf Encrypt all images.} This would have to be done on the summit or in la Serena before hitting the long haul network. Possibly no new hardware needed but a change in software.  & Can be Low \\
+{\bf Transmission Layer Encryption.} Network encryption would probably require new hardware. & Moderate \\
+{\bf Physically securing the network.} This will be next to impossible and would probably require new network agreements. This however would be the only way to ensure no packet snooping. & Very high \\
+{\bf Avoid certain time coordinates.} This would require changing the scheduler to provide more constraints on pointing. &  Moderate  \\\hline
+\end{longtable}

@@ -3,3 +3,5 @@ AES:Advanced Encryption Service
 BBCP:BaBar Copy Program 
 FSL:Facility Security Level
 INRIA:French National Institute for computer science and applied mathematics
+FTPS: File Transfer Protocol Secure
+HTTPS:Hypertext Transfer Protocol Secure 
