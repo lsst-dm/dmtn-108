@@ -2,7 +2,7 @@
 
 There is a perceived  risk that LSST  images may be snooped during transmission from the telescope. This concerns the images used for alert processing which are transmitted within a minute and provide a valuable resource for identifying moving objects including satellites. Though our processing will ignore satellites other parties may be interested in this information.
 
-In an email during September 2019 Steve Kahn indicated that all data should be encrypted. This would include transfers to Europe.
+There have been sver comunicaitons concerning encryption on the wire this done into in some detail in \citeds{DMTN-163}.
 
 
 \subsection{Baseline }
@@ -17,7 +17,7 @@ The network has been designed, and now largely implemented, for high throughput 
 
 The baseline is for encryption of controls but not data i.e. authentication is encrypted, data transmission is not.
 
-{\bf It would be extremely useful if we agreed on the security rating of LSST data (or subsets of it)  as per NIST  \citep{nist800-60}}.
+{\bf It would be extremely useful if we agreed on the security rating of LSST data (or subsets of it)  as per NIST  \citedsp{nist800-60}}. This is also one of the first steps in \citedsp{FIPS200} called out in \citedsp{NIST.SP.800-171}.
 Naively one would assume the security objective would be \emph{Availability}, the potential impact would be \emph{low} for confidentiality, availability and integrity. Hence  the Security Category (SC) would be \{low,low,low\} in NIST terms.
 
 \input{whichdata}
