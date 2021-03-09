@@ -1,7 +1,8 @@
 .. image:: https://img.shields.io/badge/dmtn--108-lsst.io-brightgreen.svg
    :target: https://dmtn-108.lsst.io
-.. image:: https://travis-ci.org/lsst-dm/dmtn-108.svg
-   :target: https://travis-ci.org/lsst-dm/dmtn-108
+.. image:: https://github.com/lsst-dm/dmtn-108/workflows/CI/badge.svg
+   :target: https://github.com/lsst-dm/dmtn-108/actions/
+
 
 ##################################
 Security of prompt imaging on LSST

@@ -2,7 +2,7 @@
 
 There is a perceived  risk that LSST  images may be snooped during transmission from the telescope. This concerns the images used for alert processing which are transmitted within a minute and provide a valuable resource for identifying moving objects including satellites. Though our processing will ignore satellites other parties may be interested in this information.
 
-In an email during September 2019 Steve Kahn indicated that all data should be encrypted. This would include transfers to Europe.
+There have been several communications concerning encryption on the wire this done into in some detail in \citeds{DMTN-163}.
 
 
 \subsection{Baseline }
@@ -17,7 +17,7 @@ The network has been designed, and now largely implemented, for high throughput 
 
 The baseline is for encryption of controls but not data i.e. authentication is encrypted, data transmission is not.
 
-{\bf It would be extremely useful if we agreed on the security rating of LSST data (or subsets of it)  as per NIST  \citep{nist800-60}}.
+{\bf It would be extremely useful if we agreed on the security rating of LSST data (or subsets of it)  as per NIST  \citedsp{nist800-60}}. This is also one of the first steps in \citedsp{FIPS200} called out in \citedsp{NIST.SP.800-171}.
 Naively one would assume the security objective would be \emph{Availability}, the potential impact would be \emph{low} for confidentiality, availability and integrity. Hence  the Security Category (SC) would be \{low,low,low\} in NIST terms.
 
 \input{whichdata}
@@ -43,9 +43,9 @@ The network is also actively monitored with Bro\footnote{\url{https://www.coreli
 Though technically feasible by perhaps bribing or coercing staff somewhere this seems unlikely - a physical tap should also be noticed during fiber inspections.  The image as transferred over this line is also in an obscure format (though could be put together with some effort).
 
 
-International transfers to IN2P3 are still being worked out at this time. This may be done on shared commercial carrier. One assumes
-this is relatively secure though not perhaps as secure as our dedicated lines. ESNet could be used for this transfer as well if it did not originate at NCSA. There seems no particular reason to do this transfer from NCSA as opposed to directly from Chile or landing it
-temporarily at some ESNet endpoint. One may consider the open storage network \citep{osn} for this also though its not currently the baseline.
+International transfers to IN2P3 are still being worked out at this time.
+With SLAC as the USDF  ESNet could be used for this transfer as well making the security a more DOE centric issue.
+ One may consider the open storage network \citep{osn} for this also though its not currently the baseline.
 
 
 \section{Transmission security} \label{sec:trans}
@@ -53,7 +53,7 @@ temporarily at some ESNet endpoint. One may consider the open storage network \c
 It has been indicated, through DOE, that holding data for some time before releasing to the collaboration is an acceptable approach to securing the images - this can be ensured by limiting the LSST personnel who have access to the files during the night.
 We would transmit images for alert processing in near realtime to NCSA. We have suggested a six hour delay - there has been no indication of how long the delay needs to be - is one hour sufficient to prevent detection of satellite maneuvers ?
 
-Currently alert images from the base are to be transmitted using BBCP\footnote{BBCP is an alternative to Gridftp when transferring large amounts of data}. The control channel is encrypted but the data channel is open - this is considered secure in the scientific world \citep{bbcp}. Hence theoretically packets snooped on their way to Illinois could be extracted and processed.
+Currently alert images from the base are to be transmitted using BBCP\footnote{BBCP is an alternative to Gridftp when transferring large amounts of data}. The control channel is encrypted but the data channel is open - this is considered secure in the scientific world \citep{bbcp}. Hence theoretically packets snooped on their way to SLAC  could be extracted and processed.
 
 
 Our preference would be to do this in software using TLS based protocols such as HTTPS or FTPS to replace BBCP. This may cause some performance hit.
@@ -62,6 +62,8 @@ There are also  examples of hardware solutions for this which would probably be 
 
 We could encrypt the images themselves before transmission or even on the FPGA of the camera data acquisition (DAQ) system.  The DAQ is complex construction prone to delays so we would rather not jeopardize the project by introducing changes there. Encrypting the files outside would mean more CPU and I/O - it would add a delay in the alerts processing - it may take as much as 20\% of the alerts time budget (1 minute).  This would not be very welcome in the science community. This would require some effort on our side to add encryption to the processing chain but this should be order some hundreds \$K depending on how \emph{secure} it is required to be.
 
+Should we need to keep BBCP we would have to turn to IPsec on the router and this would require router upgrades. See also \citeds{DMTN-163} for more encryption background.
+
 
 
 \subsection{Keeping it in Chile}\label{sec:chile}
@@ -69,5 +71,8 @@ The original baseline was to do alert processing in Chile in the base facility. 
 This would make the base data center the prime target of any data  attack so we may need to review security there.
 However if we agree the base/summit are secure we could avoid on the wire snooping by doing alert processing in the base facility. We would also then have to hold images there for the appointed embargo time  before releasing them to the community. We would need to do some work on the cost impacts of this but they should not be insurmountable.
 
+\section{Alerts}
+There is also some fear of alerts for satellites. In general DM software masks streaks caused by satellites. There is a small chance for some geosynchronous orbiting satellites may pass as solar system objects and be alerted on.
+There should be a small window of streak length were this may be in issue i.e. shorter it is a solar system object and alerted normally, longer it is a satellite, debris or meteorite  and not alerted on. The in between needs to be agreed as well as how to deal with it.
 
 \input{sum}
