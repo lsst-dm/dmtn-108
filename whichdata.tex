@@ -2,11 +2,25 @@
 
 In communications thus far and in the security summit held on 6$^{th}$ April 2020 all data has been considered.
 
-We believe the vast majority of the 20TB of nightly images are not of a sensitive nature.
-It would be useful to understand if this is so, especially if delaying this data some period of time is sufficient to desensitize it. If this is the case do we need to encrypt all data ?
+Since then the idea of an Alert Vetting System (AVS) to be implemented by LLNL has been raised.
+A certain set of of potential alerts  would be sent to  and evaluated by AVS.
+These would include  all streaks unattributable to known asteroids that
+\begin{enumerate}
+\item correspond to objects moving faster than vMax=30 deg/day, or
+\item  whose velocity cannot be determined (e.g., due to overlaps with chip boundary).
+\end{enumerate}
+Streaks not forwarded to the AVS would be published as per current baseline.
+Forwarded streaks would be eliminated from Rubin’s public prompt alert stream.
+They would also be held back from the publicly queryable Prompt Processing Database (PPDB) for either as long as the focal plane data hasn’t been released  or until the AVS explicitly permits their publication.
 
-If there are patches of the sky which are sensitive can they be avoided at certain times ? e.g. Geo synchronous orbit stripe.
-Are there other rough orbits we should delay data from ?
+\rec{OPS}{AVS}{The operations team with LLNL shall design and implement an Alert Vetting System(AVS).} { Data Production  shall send a subset of potential alerts to LLNL for processing via the AVS, which will run at that separate facility. LLNL will check those alerts against their catalog of assets and flag alerts that should not be issued before the embargo time expires. Rubin should send the alert packets as generated; a list of all the alert packet IDs with a Boolean hold flag should be returned to DP. At a later stage (end of night) a list of images to be embargoed for a longer period should also be returned.}
 
-Or is it really the entire northern sky?
+\subsection{Delaying focal plane data}
+We believe the vast majority of the 20TB of nightly images are not of a sensitive nature however we understand the wish is to hold all images in an encrypted store for at least 1 to 3 days.
+We understand AVS may embargo some images for up to 30 days based on the streaks found in them.
+
+\rec{DM}{dstore}{ DM shall  implement a  delayed data store. }{
+The delayed data store will need to hold images on encrypted disks for an embargo period of between 1 and 30 days.
+}
+
 
