@@ -3,15 +3,14 @@
 In communications thus far and in the security summit held on 6$^{th}$ April 2020 all data has been considered.
 
 Since then the idea of an Alert Vetting System (AVS) to be implemented by LLNL has been raised.
-A certain set of of potential alerts  would be sent to  and evaluated by AVS.
+A certain set of of potential alerts  would be sent to  and evaluated by the AVS.
 These would include  all streaks unattributable to known asteroids that
 \begin{enumerate}
 \item correspond to objects moving faster than vMax=30 deg/day, or
 \item  whose velocity cannot be determined (e.g., due to overlaps with chip boundary).
 \end{enumerate}
 Streaks not forwarded to the AVS would be published as per current baseline.
-Forwarded streaks would be eliminated from Rubin’s public prompt alert stream.
-They would also be held back from the publicly queryable Prompt Processing Database (PPDB) for either as long as the focal plane data hasn’t been released  or until the AVS explicitly permits their publication.
+Forwarded streaks will be vetted. If a streak is determined to be astrophysical by the AVS, it will be included in the prompt product data base and shipped to the Minor Planet Center (MPC) with all other natural streaks. If it is not natural, it will not be returned by the AVS and hence eliminated fro the prompt products database and not sent to the MPC.
 
 \rec{OPS}{AVS}{The operations team with LLNL shall design and implement an Alert Vetting System(AVS).} { Data Production  shall send a subset of potential alerts to LLNL for processing via the AVS, which will run at that separate facility. LLNL will check those alerts against their catalog of assets and flag alerts that should not be issued before the embargo time expires. Rubin should send the alert packets as generated; a list of all the alert packet IDs with a Boolean hold flag should be returned to DP. At a later stage (end of night) a list of images to be embargoed for a longer period should also be returned.}
 
@@ -20,7 +19,7 @@ We believe the vast majority of the 20TB of nightly images are not of a sensitiv
 We understand AVS may embargo some images for up to 30 days based on the streaks found in them.
 
 \rec{DM}{dstore}{ DM shall  implement a  delayed data store. }{
-The delayed data store will need to hold images on encrypted disks for an embargo period of between 1 and 30 days.
+The delayed data store will need to hold AVS embargoed images on encrypted disks for a period of between 1 and 30 days.
 }
 
 

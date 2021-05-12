@@ -2,7 +2,7 @@
 
 There is a perceived  risk that LSST  images may be snooped during transmission from the telescope. This concerns the images used for alert processing which are transmitted within a minute and provide a valuable resource for identifying moving objects including satellites. Though our processing will ignore satellites other parties may be interested in this information.
 
-There have been several communications concerning encryption on the wire this gone into in some detail in \citeds{DMTN-163}.
+There have been several communications concerning encryption on the wire, and this is covered in some detail in \citeds{DMTN-163}.
 
 
 \subsection{Baseline }
@@ -17,8 +17,9 @@ The network has been designed, and now largely implemented, for high throughput 
 
 The baseline is for encryption of controls but not data i.e. authentication is encrypted, data transmission is not.
 
-{\bf It would be extremely useful if we agreed on the security rating of LSST data (or subsets of it)  as per NIST  \citedsp{nist800-60}}. This is also one of the first steps in \citedsp{FIPS200} called out in \citedsp{NIST.SP.800-171}.
-Naively one would assume the security objective would be \emph{Availability}, the potential impact would be \emph{low} for confidentiality, availability and integrity. Hence  the Security Category (SC) would be \{low,low,low\} in NIST terms.
+{\bf We assume the security rating of LSST data (or subsets of it) as per NIST \citedsp{nist800-60}}. This is also one of the first steps in \citedsp{FIPS200} called out in \citedsp{NIST.SP.800-171}.
+We define the security objective to be \emph{Availability}, the potential impact is \emph{low} for confidentiality, availability and integrity. Hence the Security Category (SC) is \{low,low,low\} in NIST terms.
+
 
 \section{New requirements}
 This is a list of new requirements which will require an LCR and costing.
@@ -52,9 +53,9 @@ If we do not transfer embargoed images to France or UK we understand encryption 
 
 \section {Physical Security}
 
-On the mountain and in the base facility LSST networks and computers are in rooms requiring ID card access and the compounds have 24/7 security staff. We can increase physical security in Chile and SLAC.
+On the mountain and in the base facility Rubin networks and computers are in rooms requiring ID card access and the compounds have 24/7 security staff. We can increase physical security in Chile and SLAC.
 Access from outside the site is only via VPN.
-This also implies limiting the LSST personnel who have access to the files during the night.
+This also implies limiting the Rubin personnel who have access to the files during the night.
 
 
 \rec{IT}{physsec}{IT shall increase physical security in Chile and SLAC.} {
