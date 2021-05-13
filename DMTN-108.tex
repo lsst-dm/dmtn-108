@@ -4,8 +4,38 @@
 % lsstdoc documentation: https://lsst-texmf.lsst.io/lsstdoc.html
 
 % Package imports go here.
+\usepackage{collect}
+
+
 
 % Local commands go here.
+\newcounter{reccount} %counter for recomendations
+
+\newenvironment{recenv}[1]
+    { % empty more or less but we need it so we can refer to it.
+	\refstepcounter{reccount}  %increment the counter for each recomendation
+		    #1
+    }
+
+\definecollection{nrecs}
+
+\newcommand{\rec}[4]{ %  handle,label (rec:label for references) ,title, text
+    \begin{recenv}
+    \vspace{5pt}
+    \noindent \textbf{NR-\thereccount~#3}. \newline
+    \newline \label{rec:#2}\noindent {#4}
+    \vspace{5pt}
+    \end{recenv}
+
+	% collecting  for output :
+
+        \begin{collect}{nrecs}{}{}
+		\noindent \textbf{NR-\ref{rec:#2}~#3.}\\
+		#4 (See page \pageref{rec:#2}.) \newline \vspace{5pt}
+	\end{collect}
+	\typeout{NR-\thereccount: #1: #2: #3: :END}
+}
+
 
 % To add a short-form title:
 % \title[Short title]{Title}
